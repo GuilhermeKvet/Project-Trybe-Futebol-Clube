@@ -14,3 +14,17 @@ export interface IToken {
   role: string;
   iat?: number
 }
+
+export interface ITeams {
+  id?: number;
+  teamsName: string;
+}
+
+export interface IMatches {
+  id?: number;
+  homeTeam: number;
+  homeTeamGoals: number;
+  awayTeam: number;
+  awayTeamGoals: number;
+  inProgress: number;
+}
