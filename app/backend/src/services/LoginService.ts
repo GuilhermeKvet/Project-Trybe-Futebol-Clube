@@ -5,7 +5,7 @@ import { compare } from 'bcryptjs';
 import LoginValidation from '../validations/LoginValidation';
 import { ILogin, IToken } from '../interfaces/interfaces';
 import generateToken from '../utils/generateToken';
-import HttpException from '../middlewares/httpError';
+import HttpException from '../helpers/httpError';
 import Users from '../database/models/UsersModel';
 
 dotenv.config();

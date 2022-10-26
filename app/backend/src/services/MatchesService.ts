@@ -2,7 +2,7 @@ import Teams from '../database/models/TeamsModel';
 import Matches from '../database/models/MatchesModel';
 import { IMatches } from '../interfaces/interfaces';
 import MatchesValidation from '../validations/MatchesValidation';
-import HttpException from '../middlewares/httpError';
+import HttpException from '../helpers/httpError';
 
 export default class MatchesService {
   constructor(private model = Matches) { }
@@ -31,9 +31,15 @@ export default class MatchesService {
   public create = async (matche: IMatches): Promise<Matches> => {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = matche;
     const inProgress = true;
+
     if (!MatchesValidation.validateMatchesInputs) {
       throw new HttpException(400, 'All fields must be filled');
     }
+
+    if (matche.homeTeam === matche.awayTeam) {
+      throw new HttpException(422, 'It is not possible to create a match with two equal teams');
+    }
+
     const insertMatche = await this.model.create(
       { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress },
     );

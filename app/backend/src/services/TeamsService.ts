@@ -1,5 +1,5 @@
 import Teams from '../database/models/TeamsModel';
-import HttpException from '../middlewares/httpError';
+import HttpException from '../helpers/httpError';
 
 export default class TeamsService {
   constructor(private model = Teams) { }
