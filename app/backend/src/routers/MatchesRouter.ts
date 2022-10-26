@@ -7,5 +7,7 @@ const matchesService = new MatchesService();
 const matchesController = new MatchesController(matchesService);
 
 router.get('/', matchesController.findAll);
+router.post('/', matchesController.create);
+router.patch('/:id/finish', matchesController.finished);
 
 export default router;

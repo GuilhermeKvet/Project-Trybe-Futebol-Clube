@@ -10,9 +10,9 @@ export interface IUser extends ILogin {
 
 export interface IToken {
   id: number;
-  email: string,
+  email: string;
   role: string;
-  iat?: number
+  iat?: number;
 }
 
 export interface ITeams {
