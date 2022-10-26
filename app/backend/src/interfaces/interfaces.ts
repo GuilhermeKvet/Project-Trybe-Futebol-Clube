@@ -20,11 +20,14 @@ export interface ITeams {
   teamsName: string;
 }
 
-export interface IMatches {
+export interface IGoals {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
+
+export interface IMatches extends IGoals {
   id?: number;
   homeTeam: number;
-  homeTeamGoals: number;
   awayTeam: number;
-  awayTeamGoals: number;
   inProgress: number;
 }

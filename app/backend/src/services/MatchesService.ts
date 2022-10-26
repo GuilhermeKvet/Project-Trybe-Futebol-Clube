@@ -1,6 +1,6 @@
 import Teams from '../database/models/TeamsModel';
 import Matches from '../database/models/MatchesModel';
-import { IMatches } from '../interfaces/interfaces';
+import { IGoals, IMatches } from '../interfaces/interfaces';
 import MatchesValidation from '../validations/MatchesValidation';
 import HttpException from '../helpers/httpError';
 
@@ -49,5 +49,10 @@ export default class MatchesService {
   public finished = async (id: number): Promise<void> => {
     const inProgress = false;
     await this.model.update({ inProgress }, { where: { id } });
+  };
+
+  public updateGoals = async (id: number, goals: IGoals): Promise<void> => {
+    const { homeTeamGoals, awayTeamGoals } = goals;
+    await this.model.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
   };
 }

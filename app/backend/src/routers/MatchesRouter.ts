@@ -11,5 +11,6 @@ const matchesController = new MatchesController(matchesService);
 router.get('/', matchesController.findAll);
 router.post('/', hasTeamMiddleware, validateJWT, matchesController.create);
 router.patch('/:id/finish', matchesController.finished);
+router.patch('/:id', matchesController.updateGoals);
 
 export default router;
