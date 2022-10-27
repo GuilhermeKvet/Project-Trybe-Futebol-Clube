@@ -3,6 +3,7 @@ import errorMiddleware from './middlewares/errorMiddleware';
 import loginRouter from './routers/LoginRouter';
 import teamsRouter from './routers/TeamsRouter';
 import matchesRouter from './routers/MatchesRouter';
+import leaderboardRouter from './routers/LeaderboardRouter';
 
 class App {
   public app: express.Express;
@@ -33,6 +34,7 @@ class App {
     this.app.use('/login', loginRouter);
     this.app.use('/teams', teamsRouter);
     this.app.use('/matches', matchesRouter);
+    this.app.use('/leaderboard/home', leaderboardRouter);
     this.app.use(errorMiddleware);
   }
 
