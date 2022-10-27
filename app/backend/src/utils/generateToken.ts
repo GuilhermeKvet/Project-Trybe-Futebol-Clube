@@ -12,4 +12,4 @@ const generateToken = (user: IUser) => {
   return jwt.sign(payload, JWT_SECRET as Secret);
 };
 
-export default generateToken;
+export default { generateToken };

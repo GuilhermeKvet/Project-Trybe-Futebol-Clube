@@ -4,7 +4,7 @@ import { Secret } from 'jsonwebtoken';
 import { compare } from 'bcryptjs';
 import LoginValidation from '../validations/LoginValidation';
 import { ILogin, IToken } from '../interfaces/interfaces';
-import generateToken from '../utils/generateToken';
+import generateTokenFunction from '../utils/generateToken';
 import HttpException from '../helpers/httpError';
 import Users from '../database/models/UsersModel';
 
@@ -30,7 +30,7 @@ export default class LoginService {
 
     if (!hasPassword) throw new HttpException(401, 'Incorrect email or password');
 
-    const token = generateToken(hasUser);
+    const token = generateTokenFunction.generateToken(hasUser);
     return token;
   };
 
