@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import TeamsService from '../services/TeamsService';
 
 export default class TeamsController {
-  constructor(private teamsService = new TeamsService()) { }
+  constructor(private teamsService: TeamsService) { }
 
   public findAll = async (req: Request, res: Response): Promise<Response> => {
     const teams = await this.teamsService.findAll();
