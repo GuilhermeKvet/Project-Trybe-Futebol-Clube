@@ -32,7 +32,7 @@ export default class MatchesService {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = matche;
     const inProgress = true;
 
-    if (!MatchesValidation.validateMatchesInputs) {
+    if (!MatchesValidation.validateMatchesInputs(matche)) {
       throw new HttpException(400, 'All fields must be filled');
     }
 

@@ -28,13 +28,13 @@ describe('Testando rota /login', () => {
         .resolves({
           ...userResponse
       } as Users);
-      sinon.stub(bcrypt, 'compare').resolves(true);
       sinon.stub(generateToken, "generateToken").resolves(tokenResponse.token);
     });
   
     afterEach(() => sinon.restore());
 
     it('Verifica se ao logar com um usuario existente, gera um token', async () => {
+      sinon.stub(bcrypt, 'compare').resolves(true);
       chaiHttpResponse = await chai
         .request(app)
         .post("/login")
@@ -42,7 +42,6 @@ describe('Testando rota /login', () => {
           email: "admin@admin.com",
           password: "secret_admin"
         });
-
 
       expect(chaiHttpResponse.status).to.be.eq(200);
       expect(chaiHttpResponse.body.token).to.be.eq(tokenResponse.token);
@@ -63,7 +62,7 @@ describe('Testando rota /login', () => {
         .post("/login")
         .send({
           email: "falseUser@admin.com",
-          password: "falsePassword"
+          password: "secret_admin"
         });
 
       expect(chaiHttpResponse.status).to.be.eq(401);
@@ -122,6 +121,14 @@ describe('Testando rota /login', () => {
 
       expect(chaiHttpResponse.status).to.be.eq(401);
       expect(chaiHttpResponse.body.message).to.be.eq('Token must be a valid token');
+    });
+    it('Verifica se e retornado um erro, nao contendo um token', async () => {
+      chaiHttpResponse = await chai
+        .request(app)
+        .get("/login/validate");
+
+      expect(chaiHttpResponse.status).to.be.eq(401);
+      expect(chaiHttpResponse.body.message).to.be.eq('Token not found');
     });
   });
 });

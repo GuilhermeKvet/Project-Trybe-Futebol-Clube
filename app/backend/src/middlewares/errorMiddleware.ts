@@ -3,7 +3,7 @@ import { ErrorRequestHandler, Response } from 'express';
 import HttpException from '../helpers/httpError';
 
 const errorMiddleware: ErrorRequestHandler = (err: HttpException, _req, res: Response, _next) => {
-  res.status(err.statusCode || 500).json({ message: err.message });
+  res.status(err.statusCode).json({ message: err.message });
 };
 
 export default errorMiddleware;

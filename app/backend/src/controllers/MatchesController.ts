@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import MatchesService from '../services/MatchesService';
 
 export default class MatchesController {
-  constructor(private matchesService = new MatchesService()) { }
+  constructor(private matchesService: MatchesService) { }
 
   public findAll = async (req: Request, res: Response): Promise<Response> => {
     const { inProgress: query } = req.query;
