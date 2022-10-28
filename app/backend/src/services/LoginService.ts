@@ -26,9 +26,9 @@ export default class LoginService {
 
     if (!hasUser) throw new HttpException(401, 'Incorrect email or password');
 
-    const hasPassword = await compare(password, hasUser.password);
+    const isValidPassword = await compare(password, hasUser.password);
 
-    if (!hasPassword) throw new HttpException(401, 'Incorrect email or password');
+    if (!isValidPassword) throw new HttpException(401, 'Incorrect email or password');
 
     const token = generateTokenFunction.generateToken(hasUser);
     return token;

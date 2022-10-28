@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import LeaderboardService from '../services/LeaderboardService';
 
 export default class LeaderboardController {
-  constructor(private leaderboardService = new LeaderboardService()) { }
+  constructor(private leaderboardService: LeaderboardService) { }
 
   public getHomeTeams = async (req: Request, res: Response): Promise<Response> => {
     const gradingTeamsSort = await this.leaderboardService.getHomeTeamsGrade();

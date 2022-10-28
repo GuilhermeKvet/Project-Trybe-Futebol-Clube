@@ -86,7 +86,7 @@ describe('Testando rota /login', () => {
         .request(app)
         .post("/login")
         .send({
-          email: "admin@admin.com",
+          email: "user@user.com",
           password: "senhaInvalida"
         });
 
